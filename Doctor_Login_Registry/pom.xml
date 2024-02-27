@@ -8,7 +8,7 @@
 		<version>3.2.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.patient</groupId>
+	<groupId>com.hospital</groupId>
 	<artifactId>Doctor_Login_Registry</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Doctor_Login_Registry</name>
