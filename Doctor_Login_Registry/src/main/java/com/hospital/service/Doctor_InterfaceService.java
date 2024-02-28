@@ -6,4 +6,6 @@ public interface Doctor_InterfaceService {
 
 	Boolean addDoctor(Doctor doctor);
 
+	Boolean doctorSignIn(Doctor doctor);
+
 }
