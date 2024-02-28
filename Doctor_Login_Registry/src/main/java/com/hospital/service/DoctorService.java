@@ -25,4 +25,19 @@ public class DoctorService implements Doctor_InterfaceService{
 		}
 	}
 
+	@Override
+	public Boolean doctorSignIn(Doctor doctor) {
+		String userName = doctor.getUserName();
+		String passWord = doctor.getPassWord();
+		
+		Doctor foundDoctor = doctor_InterfaceRepository.findByUserName(userName);
+		
+		if(foundDoctor != null && foundDoctor.getPassWord().equals(passWord))
+		{
+			return true;
+		}else {
+			return false;
+		}
+	}
+
 }

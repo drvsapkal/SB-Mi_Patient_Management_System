@@ -1,11 +1,15 @@
 package com.hospital.entity;
 
 
-import jakarta.persistence.Entity;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-import jakarta.persistence.Id;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -28,6 +32,9 @@ public class Doctor {
 	private String sector;
 	private String gender;
 	private String address;
+	
+	@OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+	private List<Patient> patients;
 	
 	public Long getId() {
 		return id;
@@ -76,6 +83,12 @@ public class Doctor {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	public List<Patient> getPatients() {
+		return patients;
+	}
+	public void setPatients(List<Patient> patients) {
+		this.patients = patients;
 	}
 	
 }
