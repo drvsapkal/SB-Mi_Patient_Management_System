@@ -26,13 +26,15 @@ public class Patient {
 	private Date date;
 	
 	@ManyToOne
-	@JoinColumn(name = "doctor_id", nullable = false)
+	@JoinColumn(name = "doctor_id")
 	private Doctor doctor;
 	
 	@OneToMany(mappedBy = "patient")
 	private List<Drug> drug;
 	
-
+	@OneToMany(mappedBy="patient")
+	private List<Reports> reports;
+	
 	public Long getId() {
 		return id;
 	}
@@ -103,6 +105,23 @@ public class Patient {
 
 	public void setDrug(List<Drug> drug) {
 		this.drug = drug;
+	}
+
+	public Patient(Long id, String firsName, String lastName, String mobileNumber, String city, String emailId,
+			Date date, Doctor doctor, List<Drug> drug, List<Reports> reports) {
+		this.id = id;
+		this.firsName = firsName;
+		this.lastName = lastName;
+		this.mobileNumber = mobileNumber;
+		this.city = city;
+		this.emailId = emailId;
+		this.date = date;
+		this.doctor = doctor;
+		this.drug = drug;
+		this.reports = reports;
+	}
+
+	public Patient() {
 	}
 	
 }

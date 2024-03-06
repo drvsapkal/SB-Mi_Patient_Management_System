@@ -20,6 +20,12 @@ public class PatientController {
 	
 	@PostMapping("/add")
 	private ResponseEntity<String> addPatient(@RequestBody Patient patient) {
-		return new ResponseEntity<String>("Patient added SuccessFully", HttpStatus.ACCEPTED);
+		
+		if(patient != null && patient_InterfaceService.addPatient(patient))
+		{
+			return new ResponseEntity<String>("Patient added SuccessFully", HttpStatus.ACCEPTED);
+		}else {
+			return new ResponseEntity<String>("Please Enter Correct Details", HttpStatus.BAD_REQUEST);
+		}
 	}
 }
