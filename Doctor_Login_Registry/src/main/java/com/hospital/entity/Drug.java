@@ -79,5 +79,16 @@ public class Drug {
 	public void setPatient(Patient patient) {
 		this.patient = patient;
 	}
+
+	public Drug(Long id, String tabletName, Long mg, Long days, String comments, Long quantity, Patient patient) {
+		super();
+		this.id = id;
+		this.tabletName = tabletName;
+		this.mg = mg;
+		this.days = days;
+		this.comments = comments;
+		this.quantity = quantity;
+		this.patient = patient;
+	}
 	
 }

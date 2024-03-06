@@ -12,7 +12,6 @@ public class DoctorService implements Doctor_InterfaceService{
 	@Autowired
 	Doctor_InterfaceRepository doctor_InterfaceRepository;
 
-	@Override
 	public Boolean addDoctor(Doctor doctor) {
 		String userName = doctor.getUserName();
 
@@ -25,7 +24,6 @@ public class DoctorService implements Doctor_InterfaceService{
 		}
 	}
 
-	@Override
 	public Boolean doctorSignIn(Doctor doctor) {
 		String userName = doctor.getUserName();
 		String passWord = doctor.getPassWord();
