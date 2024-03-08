@@ -6,4 +6,6 @@ public interface Patient_InterfaceService {
 
 	boolean addPatient(Patient patient);
 
+	Patient getPatientDetails(Long patientId);
+
 }

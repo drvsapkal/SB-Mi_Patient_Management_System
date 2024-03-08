@@ -3,6 +3,8 @@ package com.hospital.entity;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,12 +29,14 @@ public class Patient {
 	
 	@ManyToOne
 	@JoinColumn(name = "doctor_id")
+	@JsonIgnore
 	private Doctor doctor;
 	
 	@OneToMany(mappedBy = "patient")
 	private List<Drug> drug;
 	
 	@OneToMany(mappedBy="patient")
+	@JsonIgnore
 	private List<Reports> reports;
 	
 	public Long getId() {

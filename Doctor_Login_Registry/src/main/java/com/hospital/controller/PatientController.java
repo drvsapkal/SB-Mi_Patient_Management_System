@@ -2,7 +2,10 @@ package com.hospital.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,5 +30,18 @@ public class PatientController {
 		}else {
 			return new ResponseEntity<String>("Please Enter Correct Details", HttpStatus.BAD_REQUEST);
 		}
+	}
+	
+	@GetMapping("/details/{patientId}")
+	private ResponseEntity<Patient> getPatientsDetails(@PathVariable("patientId") Long id)
+	{
+		Patient patientDetails = patient_InterfaceService.getPatientDetails(id);
+
+		if (patientDetails != null) {
+			return new ResponseEntity<Patient>(patientDetails, HttpStatusCode.valueOf(200));
+		} else {
+			return new ResponseEntity<Patient>(HttpStatusCode.valueOf(701));
+		}
+		
 	}
 }
