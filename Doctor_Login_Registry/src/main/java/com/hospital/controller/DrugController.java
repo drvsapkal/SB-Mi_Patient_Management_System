@@ -18,7 +18,7 @@ public class DrugController {
 	@Autowired
 	Drug_InterfaceService drug_InterfaceService;
 	
-	@PostMapping("/add")
+	@PostMapping("/addPatientDrug")
 	private ResponseEntity<Drug> addDrugs(@RequestBody Drug drug) {
 		
 		if(drug_InterfaceService.addDrugs(drug))
