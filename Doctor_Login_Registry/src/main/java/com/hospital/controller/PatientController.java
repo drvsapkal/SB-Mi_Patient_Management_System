@@ -44,4 +44,6 @@ public class PatientController {
 		}
 		
 	}
+	
+	//all patient details in that no drugs
 }
