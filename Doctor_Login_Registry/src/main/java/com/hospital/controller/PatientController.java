@@ -1,5 +1,7 @@
 package com.hospital.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -30,20 +32,33 @@ public class PatientController {
 		}else {
 			return new ResponseEntity<String>("Please Enter Correct Details", HttpStatus.BAD_REQUEST);
 		}
+		
 	}
 	
 	@GetMapping("/details/{patientId}")
-	private ResponseEntity<Patient> getPatientsDetails(@PathVariable("patientId") Long id)
-	{
-		Patient patientDetails = patient_InterfaceService.getPatientDetails(id);
+	private ResponseEntity<Patient> getPatientById(@PathVariable("patientId") Long id) {
+		
+		Patient patientDetails = patient_InterfaceService.getPatientById(id);
 
 		if (patientDetails != null) {
 			return new ResponseEntity<Patient>(patientDetails, HttpStatusCode.valueOf(200));
 		} else {
 			return new ResponseEntity<Patient>(HttpStatusCode.valueOf(701));
+		}	
+		
+	}
+	
+	
+	@GetMapping("/details")
+	private ResponseEntity<List<Patient>> getPatientsDetails() {
+
+		List<Patient> patients = patient_InterfaceService.getPatientsDetails();
+		if (!patients.isEmpty()) {
+			return new ResponseEntity<List<Patient>>(patients, HttpStatusCode.valueOf(200));	// 200 OK
+		} else {
+			return ResponseEntity.noContent().build();		//204 No Content
 		}
 		
 	}
 	
-	//all patient details in that no drugs
 }
