@@ -1,5 +1,7 @@
 package com.hospital.service;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +29,23 @@ public class PatientService implements Patient_InterfaceService{
 	}
 
 	@Override
-	public Patient getPatientDetails(Long patientId) {
+	public Patient getPatientById(Long patientId) {
 		
 		Optional<Patient> patientDetails = patient_InterfaceRepository.findById(patientId);
 		return patientDetails.get();
 	
 	}
 
+	@Override
+	public List<Patient> getPatientsDetails() {
+		
+		List<Patient> patientDetails = patient_InterfaceRepository.findAll();
+
+		if (patientDetails != null) {
+			return patientDetails;
+		} else {
+			return Collections.emptyList();
+		}
+	}
 	
 }
