@@ -1,7 +1,5 @@
 package com.hospital.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,7 +22,6 @@ public class Drug {
 	
 	@ManyToOne
 	@JoinColumn(name = "patient_id")
-	@JsonIgnore
 	private Patient patient;
 
 	public Long getId() {

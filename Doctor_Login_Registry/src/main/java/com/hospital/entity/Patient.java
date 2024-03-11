@@ -29,10 +29,10 @@ public class Patient {
 	
 	@ManyToOne
 	@JoinColumn(name = "doctor_id")
-	@JsonIgnore
 	private Doctor doctor;
 	
 	@OneToMany(mappedBy = "patient")
+	@JsonIgnore
 	private List<Drug> drug;
 	
 	@OneToMany(mappedBy="patient")
