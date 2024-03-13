@@ -3,6 +3,7 @@ package com.hospital.entity;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -25,6 +26,8 @@ public class Patient {
 	private String mobileNumber;
 	private String city;
 	private String emailId;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd")
 	private Date date;
 	
 	@ManyToOne
