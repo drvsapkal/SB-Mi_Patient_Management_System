@@ -1,6 +1,7 @@
 package com.hospital.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.hospital.entity.Doctor;
@@ -11,6 +12,9 @@ public class DoctorService implements Doctor_InterfaceService{
 
 	@Autowired
 	Doctor_InterfaceRepository doctor_InterfaceRepository;
+	
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	public Boolean addDoctor(Doctor doctor) {
 		String userName = doctor.getUserName();
@@ -19,6 +23,9 @@ public class DoctorService implements Doctor_InterfaceService{
 			return false;
 		}
 		else {
+			String encodedPassword = passwordEncoder.encode(doctor.getPassWord());
+	        doctor.setPassWord(encodedPassword);
+	        System.out.println(doctor.getPassWord());
 			Doctor d = doctor_InterfaceRepository.save(doctor);
 			return d!= null ? true: false; 
 		}
@@ -30,7 +37,7 @@ public class DoctorService implements Doctor_InterfaceService{
 		
 		Doctor foundDoctor = doctor_InterfaceRepository.findByUserName(userName);
 		
-		if(foundDoctor != null && foundDoctor.getPassWord().equals(passWord))
+		if(foundDoctor != null && passwordEncoder.matches(passWord, foundDoctor.getPassWord()))
 		{
 			return true;
 		}else {
