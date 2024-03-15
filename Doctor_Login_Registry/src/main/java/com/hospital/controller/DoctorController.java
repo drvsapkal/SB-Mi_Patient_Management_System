@@ -31,12 +31,22 @@ public class DoctorController {
 	}
 	
 	@PostMapping("/login")
-	private ResponseEntity<ResponseResult> doctorSignIn(@RequestBody Doctor doctor) {
-		boolean signInResult = doctor_InterfaceService.doctorSignIn(doctor);
-		String message = signInResult ? "Login Success" : "Invalid username or password";
-		ResponseResult response = new ResponseResult(signInResult, message);
-		HttpStatus status = signInResult ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
-		return new ResponseEntity<ResponseResult>(response, status);
+	private ResponseEntity<Doctor> doctorSignIn(@RequestBody Doctor doctor) {
+	
+		Doctor doctorLoginDetails = doctor_InterfaceService.doctorSignIn(doctor);
+		if(doctorLoginDetails != null)
+		{
+			return new ResponseEntity<Doctor>(doctorLoginDetails, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Doctor>(HttpStatus.UNAUTHORIZED);
+
+		}
+//		boolean signInResult = doctor_InterfaceService.doctorSignIn(doctor);
+//		String message = signInResult ? "Login Success" : "Invalid username or password";
+//		ResponseResult response = new ResponseResult(signInResult, message);
+//		HttpStatus status = signInResult ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
+//		return new ResponseEntity<ResponseResult>(response, status);
+	
 	}
 
 }
