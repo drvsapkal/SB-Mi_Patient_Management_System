@@ -31,7 +31,7 @@ public class DoctorService implements Doctor_InterfaceService{
 		}
 	}
 
-	public Boolean doctorSignIn(Doctor doctor) {
+	public Doctor doctorSignIn(Doctor doctor) {
 		String userName = doctor.getUserName();
 		String passWord = doctor.getPassWord();
 		
@@ -39,9 +39,9 @@ public class DoctorService implements Doctor_InterfaceService{
 		
 		if(foundDoctor != null && passwordEncoder.matches(passWord, foundDoctor.getPassWord()))
 		{
-			return true;
+			return foundDoctor;
 		}else {
-			return false;
+			return null;
 		}
 	}
 
