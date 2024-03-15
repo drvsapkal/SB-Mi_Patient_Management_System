@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hospital.entity.Patient;
+import com.hospital.response_result.ResponseResult;
 import com.hospital.service.Patient_InterfaceService;
 
 @RestController
@@ -26,15 +27,20 @@ public class PatientController {
 	Patient_InterfaceService patient_InterfaceService;
 	
 	@PostMapping("/add")
-	private ResponseEntity<String> addPatient(@RequestBody Patient patient) {
+	private ResponseEntity<ResponseResult> addPatient(@RequestBody Patient patient) {
 		
-		if(patient != null && patient_InterfaceService.addPatient(patient))
-		{
-			return new ResponseEntity<String>("Patient added SuccessFully", HttpStatus.ACCEPTED);
-		}else {
-			return new ResponseEntity<String>("Please Enter Correct Details", HttpStatus.BAD_REQUEST);
-		}
-		
+		boolean signInResult = patient_InterfaceService.addPatient(patient);
+		String message = signInResult ? "Registered SuccessFully" : "Not Registered, enter valid data";
+		ResponseResult response = new ResponseResult(signInResult, message);
+		HttpStatus status = signInResult ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
+		return new ResponseEntity<ResponseResult>(response, status);
+//		if(patient != null && patient_InterfaceService.addPatient(patient))
+//		{
+//			return new ResponseEntity<String>("Patient added SuccessFully", HttpStatus.ACCEPTED);
+//		}else {
+//			return new ResponseEntity<String>("Please Enter Correct Details", HttpStatus.BAD_REQUEST);
+//		}
+//		
 	}
 	
 	@GetMapping("/details/{patientId}")
