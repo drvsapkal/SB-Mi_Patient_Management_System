@@ -3,6 +3,9 @@ package com.hospital.entity;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +26,8 @@ public class Patient {
 	private String mobileNumber;
 	private String city;
 	private String emailId;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd")
 	private Date date;
 	
 	@ManyToOne
@@ -30,9 +35,11 @@ public class Patient {
 	private Doctor doctor;
 	
 	@OneToMany(mappedBy = "patient")
+	@JsonIgnore
 	private List<Drug> drug;
 	
 	@OneToMany(mappedBy="patient")
+	@JsonIgnore
 	private List<Reports> reports;
 	
 	public Long getId() {

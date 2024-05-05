@@ -2,7 +2,8 @@ package com.hospital.entity;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,7 +33,8 @@ public class Doctor {
 	private String gender;
 	private String address;
 	
-	@OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "doctor")
+	@JsonIgnore
 	private List<Patient> patients;
 	
 	public Long getId() {

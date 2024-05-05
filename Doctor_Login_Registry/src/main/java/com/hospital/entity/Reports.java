@@ -51,4 +51,5 @@ public class Reports {
 		this.patient = patient;
 	}
 	
+	public Reports() {}
 }

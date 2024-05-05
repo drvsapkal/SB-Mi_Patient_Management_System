@@ -91,4 +91,5 @@ public class Drug {
 		this.patient = patient;
 	}
 	
+	public Drug() {}
 }
